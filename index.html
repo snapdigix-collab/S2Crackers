@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S2 Crackers | Customer Feedback</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --orange: #ff7a00;
+  --gold: #ffc857;
+  --dark: #111018;
+  --card: #1c1a24;
+  --muted: #aaa6b5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background:
+    radial-gradient(circle at top, #49220e 0, transparent 35%),
+    var(--dark);
+  min-height: 100vh;
+  padding: 24px 14px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+  padding: 24px 10px;
+}
+
+.logo {
+  display: inline-block;
+  border: 1px solid #ff9b3d;
+  color: var(--gold);
+  border-radius: 50px;
+  padding: 7px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.header h1 {
+  font-size: clamp(30px, 7vw, 44px);
+  line-height: 1.2;
+  margin: 18px 0 8px;
+  font-weight: 800;
+}
+
+.header h1 span {
+  color: var(--orange);
+}
+
+.header p {
+  color: #c6c1ce;
+  font-size: 14px;
+  margin: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #34303d;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 18px 50px #0005;
+}
+
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.field { margin-bottom: 17px; }
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e9e5ef;
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #403b49;
+  border-radius: 12px;
+  background: #131119;
+  color: white;
+  padding: 13px 14px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px #ff7a001c;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #777280;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.rating input { display: none; }
+
+.rating label {
+  font-size: 34px;
+  color: #514b59;
+  cursor: pointer;
+  margin: 0;
+  transition: .15s;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+  color: var(--gold);
+}
+
+.rating-text {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.submit-btn {
+  width: 100%;
+  border: none;
+  border-radius: 13px;
+  padding: 15px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #ff9b22, #ff6a00);
+  color: #1b1006;
+  font: inherit;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px #ff7a0030;
+}
+
+.submit-btn:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.privacy {
+  color: #898492;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.success {
+  display: none;
+  text-align: center;
+  background: #183323;
+  border: 1px solid #2c7047;
+  padding: 16px;
+  border-radius: 13px;
+  margin-bottom: 18px;
+  color: #b9f5ce;
+  font-size: 14px;
+}
+
+.footer {
+  text-align: center;
+  color: #8e8998;
+  font-size: 12px;
+  padding: 22px 0 5px;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 20px 16px; }
+  .row { grid-template-columns: 1fr; gap: 0; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="logo">S2 CRACKERS</div>
+    <h1>YOUR FEEDBACK<br><span>MATTERS!</span></h1>
+    <p>Make our celebrations brighter with your feedback ✨</p>
+  </header>
+
+  <main class="card">
+    <div id="success" class="success">
+      🎉 Thank you! Your feedback has been submitted successfully.
+    </div>
+
+    <form id="feedbackForm">
+      <h2 class="section-title">📝 Customer Details</h2>
+
+      <div class="field">
+        <label for="customerName">Full Name *</label>
+        <input id="customerName" name="customerName"
+          placeholder="Enter your name" required maxlength="100">
+      </div>
+
+      <div class="field">
+        <label for="mobile">Mobile Number *</label>
+        <input id="mobile" name="mobile" type="tel"
+          inputmode="numeric" pattern="[0-9]{10}"
+          placeholder="10-digit mobile number" required>
+      </div>
+
+      <div class="field">
+        <label for="amount">Shopping Amount (₹) *</label>
+        <input id="amount" name="amount" type="number"
+          min="0" step="1" placeholder="Enter purchase amount" required>
+      </div>
+
+      <div class="field">
+        <label>How was your shopping experience? *</label>
+        <div class="rating">
+          <input type="radio" id="star5" name="rating" value="5" required>
+          <label for="star5" title="Excellent">★</label>
+
+          <input type="radio" id="star4" name="rating" value="4">
+          <label for="star4" title="Very Good">★</label>
+
+          <input type="radio" id="star3" name="rating" value="3">
+          <label for="star3" title="Good">★</label>
+
+          <input type="radio" id="star2" name="rating" value="2">
+          <label for="star2" title="Fair">★</label>
+
+          <input type="radio" id="star1" name="rating" value="1">
+          <label for="star1" title="Poor">★</label>
+        </div>
+        <div class="rating-text">Tap to rate from 1 to 5 stars</div>
+      </div>
+
+      <div class="field">
+        <label for="discovery">How did you discover our store? *</label>
+        <select id="discovery" name="discovery" required>
+          <option value="">Select an option</option>
+          <option>Referred by someone</option>
+          <option>Social Media</option>
+          <option>Just passing by</option>
+          <option>Returning customer</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="comments">Your Feedback</label>
+        <textarea id="comments" name="comments"
+          placeholder="Tell us what you liked or how we can improve..."></textarea>
+      </div>
+
+      <h2 class="section-title">🤝 Refer a Friend (Optional)</h2>
+
+      <div class="field">
+        <label for="friendName">Friend's Name</label>
+        <input id="friendName" name="friendName"
+          placeholder="Friend's name">
+      </div>
+
+      <div class="field">
+        <label for="friendMobile">Friend's Mobile Number</label>
+        <input id="friendMobile" name="friendMobile"
+          type="tel" inputmode="numeric" pattern="[0-9]{10}"
+          placeholder="10-digit mobile number">
+      </div>
+
+      <button class="submit-btn" id="submitBtn" type="submit">
+        SUBMIT FEEDBACK ✨
+      </button>
+
+      <p class="privacy">Your details are used only for feedback and customer service.</p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    Made with ❤️ by SNAPDIGIX
+  </footer>
+</div>
+
+<script>
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxBGKQ3dsVdU5krkzGxYufcrW7NI_Da2i22eBTTO7PoNRY7M8JP4OoVs8QRTi1pcj0c/exec";
+
+const form = document.getElementById("feedbackForm");
+const button = document.getElementById("submitBtn");
+const success = document.getElementById("success");
+
+form.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  button.disabled = true;
+  button.textContent = "SUBMITTING...";
+
+  const formData = new FormData(form);
+  const data = new URLSearchParams();
+
+  for (const [key, value] of formData.entries()) {
+    data.append(key, value);
+  }
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: data
+    });
+
+    success.style.display = "block";
+    success.scrollIntoView({ behavior: "smooth", block: "center" });
+    form.reset();
+    button.textContent = "SUBMIT FEEDBACK ✨";
+
+  } catch (error) {
+    alert("Submission failed. Please check your internet and try again.");
+    button.textContent = "SUBMIT FEEDBACK ✨";
+  }
+
+  button.disabled = false;
+});
+</script>
+</body>
+</html>
